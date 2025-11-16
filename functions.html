@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lokal Impakt | Santa’s Flee Market</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #b22222;
+      --secondary: #ffd86b;
+      --bg1: #ffeaea;
+      --bg2: #fff6e6;
+      --dark: #2c3e50;
+      --muted: #5c5c5c;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      --transition: 0.3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+
+    body {
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /*  HEADER */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(178, 34, 34, 0.8);
+      backdrop-filter: blur(8px);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    header.scrolled { background: var(--primary); box-shadow: var(--shadow); }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+    }
+
+    .logo { font-size: 1.5rem; font-weight: 700; color: #fff; }
+    nav ul { list-style: none; display: flex; gap: 25px; }
+    nav ul li a { color: white; font-weight: 500; text-decoration: none; transition: var(--transition); }
+    nav ul li a:hover { color: var(--secondary); }
+
+    .menu-toggle { display: none; flex-direction: column; cursor: pointer; }
+    .menu-toggle span { height: 3px; width: 25px; background: white; margin-bottom: 5px; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--primary);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      nav ul.open { max-height: 220px; padding: 10px 0; }
+      .menu-toggle { display: flex; }
+    }
+
+    /*  HERO  */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('https://plus.unsplash.com/premium_photo-1661396508928-e5efdfb54c39?auto=format&fit=crop&q=60&w=900')
+        no-repeat center center / cover;
+      color: white;
+      text-align: center;
+      padding: 160px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 { font-size: 3rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); margin-bottom: 15px; }
+    .hero p { font-size: 1.3rem; margin-bottom: 25px; color: #ffe6e6; }
+
+    .btn {
+      background: var(--secondary);
+      color: var(--primary);
+      border: none;
+      padding: 12px 28px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn:hover { background: white; color: var(--primary); transform: scale(1.05); }
+
+    /* SECTIONS */
+    section { padding: 80px 10%; text-align: center; }
+    h2 { font-size: 2rem; color: var(--primary); margin-bottom: 20px; position: relative; }
+    h2::after { content: ""; width: 60px; height: 3px; background: var(--secondary); display: block; margin: 10px auto; border-radius: 3px; }
+    p { font-size: 1.1rem; color: var(--muted); max-width: 800px; margin: 0 auto; }
+
+    /*PARTNERS  */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      align-items: center;
+    }
+    .partner-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .partner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .partner-card img {
+      width: 80%;
+      max-height: 120px;
+      object-fit: contain;
+      margin:0 auto;
+      display:block;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease,transform 0.3s ease;
+    }
+    .partner-card:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    /*CONTACT */
+    .contact-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px 30px;
+      text-align: left;
+    }
+    .contact-container h3 { color: var(--primary); margin-bottom: 15px; text-align: center; }
+    .contact-container form { display: flex; flex-direction: column; gap: 15px; }
+    .contact-container input,
+    .contact-container textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-container input:focus,
+    .contact-container textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(178, 34, 34, 0.2);
+      outline: none;
+    }
+    .contact-container button { align-self: center; margin-top: 10px; }
+
+    /* FOOTER*/
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /*  SNOW  */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      opacity: 0.9;
+      animation: fall linear infinite;
+      z-index: 9999;
+      user-select: none;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+    }
+
+    /* Snow toggle button */
+    .snow-toggle {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      z-index: 10000;
+    }
+    .snow-toggle:hover {
+      background: var(--secondary);
+      color: var(--primary);
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="Ресурс 1@4x.png" alt="Lokal Impakt Logo" style="height: 60px; vertical-align:middle; margin-right:10px;">
+        Lokal Impakt
+      </div>
+      <nav>
+        <ul id="menu">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="join.html" target="_blank">Join Us</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Santa’s Flee Market</h2>
+    <p>Gift with style, buy with kindness.</p>
+    <p class="event-details">📅 22 December | 📍 Sala de Sport</p>
+    <button class="btn" onclick="window.location.href='join.html'">Join Us</button>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Lokal Impakt brings together local creators, artisans, and small businesses in a festive Christmas market designed to spread joy and sustainability. Every purchase supports community talent and eco-friendly values.</p>
+  </section>
+
+  <section id="partners">
+  <h2>Our Partners</h2>
+  <p>We’re proud to collaborate with amazing local brands and organizations that share our vision for sustainability and community impact.</p>
+  <div class="partners-grid">
+    <div class="partner-card">
+      <h3 class="partner-name">Silviu Faiar</h3>
+      <p class="partner-title">Creator Content</p>
+    </div>
+  </div>
+</section>
+  </section>
+
+  
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-container">
+      <h3>We’d love to hear from you 🎁</h3>
+      <form id="contactForm">
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea rows="5" placeholder="Your Message..." required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>© 2025 Lokal Impakt | Santa’s Flee Market 🎄</strong></p>
+    <p class="tagline">Gift with style, buy with kindness.</p>
+  </footer>
+
+  <!-- Snow toggle button -->
+  <button class="snow-toggle" id="snowToggle">❄️</button>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    const snowToggle = document.getElementById('snowToggle');
+    let snowActive = true;
+    let snowflakes = [];
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Snow generator
+    function createSnowflakes() {
+      for (let i = 0; i < 60; i++) {
+        const flake = document.createElement('div');
+        flake.classList.add('snowflake');
+        flake.textContent = '❆';
+        flake.style.left = Math.random() * 100 + 'vw';
+        flake.style.animationDuration = (5 + Math.random() * 5) + 's';
+        flake.style.fontSize = (10 + Math.random() * 14) + 'px';
+        flake.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(flake);
+        snowflakes.push(flake);
+      }
+    }
+
+    function removeSnowflakes() {
+      snowflakes.forEach(flake => flake.remove());
+      snowflakes = [];
+    }
+
+    // Toggle snow
+    snowToggle.addEventListener('click', () => {
+      snowActive = !snowActive;
+      if (snowActive) {
+        createSnowflakes();
+        snowToggle.textContent = '❄️';
+      } else {
+        removeSnowflakes();
+        snowToggle.textContent = '🌤️';
+      }
+    });
+
+    // Start with snow
+    createSnowflakes();
+  </script>
+
+  <script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    description: document.getElementById("description").value,
+    date: document.getElementById("date").value,
+  };
+
+  const response = await fetch("http://localhost:3000/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+  alert(result.message);
+  e.target.reset();
+});
+</script>
+
+</body>
+</html>

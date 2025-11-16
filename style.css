@@ -1,0 +1,311 @@
+/* === GENERAL === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffdf9;
+  color: #333;
+  scroll-behavior: smooth;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* === HEADER === */
+.header {
+  position: sticky; top: 0;
+  background: rgba(178, 34, 34, 0.95);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 0;
+}
+.logo {
+  font-size: 1.5rem; font-weight: 700;
+}
+.nav-list {
+  list-style: none; display: flex; gap: 25px;
+}
+.nav-list a {
+  color: white; text-decoration: none; font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-list a:hover { color: #ffcc66; }
+
+/* === HERO === */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero {
+  
+  height: 90vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  background:url ('https://plus.unsplash.com/premium_photo-1661396508928-e5efdfb54c39?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2hyaXN0bWFzJTIwbWFya2V0fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900') no-repeat center center/cover;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+.hero-content {
+  position: relative; z-index: 2;
+}
+.hero-title {
+  font-size: 3rem; font-weight: 700; letter-spacing: 1px;
+}
+.hero-subtitle {
+  font-size: 1.3rem; margin-top: 10px;
+}
+
+/* === SECTIONS === */
+.section { padding: 80px 0; text-align: center; }
+.section-title {
+  font-size: 2rem; color: #b22222; margin-bottom: 25px;
+}
+.section-text {
+  font-size: 1.1rem; max-width: 800px; margin: 0 auto; line-height: 1.8;
+}
+
+/* ===== PARTNERS ===== */
+.partner-card {
+  text-align: center;
+}
+
+.partner-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.partner-name {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.partner-title {
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* === CONTACT === */
+.contact-form {
+  display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;
+}
+.contact-form input, .contact-form textarea {
+  padding: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;
+}
+.btn {
+  background: #b22222; color: white; border: none;
+  padding: 12px; border-radius: 5px; font-size: 1rem;
+  transition: background 0.3s;
+}
+.btn:hover { background: #8b0000; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: linear-gradient(180deg, #b22222, #8b0000);
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+
+/* ===== CONTACT FORM ===== */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #b22222;
+  box-shadow: 0 0 8px rgba(178, 34, 34, 0.3);
+  outline: none;
+}
+
+button {
+  background: #b22222;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #921b1b;
+}
+
+/* === SNOW EFFECT === */
+@keyframes fall {
+  0% { transform: translateY(-10px); opacity: 0; }
+  100% { transform: translateY(100vh); opacity: 1; }
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: fall 12s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .nav-list { display: none; }
+  .hero-title { font-size: 2.2rem; }
+  .card-grid { flex-direction: column; align-items: center; }
+}
+
+
+/* ===== POPUP QUESTIONNAIRE ===== */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center; align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  text-align: left;
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #b22222;
+  margin-bottom: 20px;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  background: #b22222;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.modal-content button:hover {
+  background: #ffd86b;
+  color: #2c3e50;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #b22222;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ffcc66;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ===== RESPONSIVE JOIN US BUTTON ===== */
+.btn {
+  background: #b22222;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #8b0000;
+  transform: translateY(-2px);
+}
+
+/* ——— Responsive scaling ——— */
+@media (max-width: 768px) {
+  .btn {
+    width: 80%;
+    font-size: 1rem;
+    padding: 12px 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    width: 90%;
+    font-size: 0.95rem;
+    padding: 10px 0;
+  }
+}
+
